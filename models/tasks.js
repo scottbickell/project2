@@ -17,9 +17,10 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         },
         task_goal: {
-            type: DataTypes.TINYINT,
+            type: DataTypes.SMALLINT,
             allowNull: false
         }
     });
+
     return tasks;
 };

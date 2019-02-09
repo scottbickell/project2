@@ -5,7 +5,10 @@
     "port": 8889,
     "database": "task_tracker",
     "host": "localhost",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "define": {
+        "timestamps": false
+     }
   },
   "test": {
     "username": "root",

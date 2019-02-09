@@ -5,7 +5,7 @@ module.exports = function (app) {
       app.get("/", function(req, res) {
         db.tasks.findAll({}).then(function(dbTasks) {
           res.render("index", {
-            msg: "Welcome!",
+            msg: "Welcome to the Task Tracker App!",
             examples: dbTasks
           });
         });
