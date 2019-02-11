@@ -1,28 +1,40 @@
 <div id="home">
     <div class="container">
         <div class="row">
-            <div class="col-8 offset-2">
+            <div class="col-md-6 offset-3">
                 <h1>{{msg}}</h1>
-                <h2>This is our Home Page!</h2>
+                <hr>
                 <form class="clearfix mb-4" action="POST">
                     <div class="form-group">
-                        <label for="example-text">Example Text</label>
-                        <input type="text" id="example-text" class="form-control" aria-describedby="example-text"
-                            placeholder="Enter Example Text">
+                        <h2>Add task entry:</h2>
+                        <div class="form-group">
+                        <input type="text" id="task_date" class="form-control" aria-describedby="task_date" hidden>
+                        </div>
+                        <div class="form-group">
+                            <label for="task_minutes">Minutes spent on task</label>
+                        <input type="text" id="task_minutes" class="form-control" aria-describedby="task_minutes">
+                        </div>
+                        <div class="form-group">
+                            <label for="task_category">Task Category</label>
+                            <select class="form-control" id="task_category">
+                                <option value="homework" selected>Homework</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="example-description">Example Description</label>
-                        <textarea class="form-control" id="example-description" aria-describedby="example-description"
-                            placeholder="Enter Example Description"></textarea>
+                        <label for="task_goal">Goal for this task (in minutes)</label>
+                        <input class="form-control" id="task_goal" aria-describedby="task_goal">
                     </div>
                     <button id="submit" class="btn btn-primary float-right">Submit</button>
                 </form>
-                <h3>Examples:</h3>
-                <ul id="example-list" class="list-group">
-                    {{#each examples}}
-                    <li data-id="{{this.id}}" class="list-group-item">
-                        <a href="example/{{this.id}}">{{this.text}}</a>
-                        <button class="btn btn-danger float-right delete">ｘ</button>
+                <h3>Current time entries:</h3>
+                <ul id="task-list" class="list-group">
+                    {{#each tasks}}
+                    <li data-id="{{this.id}}">
+                        Date: {{this.task_date}}<br>
+                        Minutes: {{this.task_minutes}}<br>
+                        Category: {{this.task_category}}<br>
+                        Goal: {{this.task_goal}}
                     </li>
                     {{/each}}
                 </ul>
