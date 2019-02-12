@@ -2,10 +2,10 @@
 // var $exampleText = $("#example-text");
 // var $exampleDescription = $("#example-description");
 
-var $task_date = $("task-date");
-var $task_minutes = $("task-minutes");
-var $task_category = $("task-category");
-var $task_goal = $("task-goal");
+var $task_date = $("#task-date");
+var $task_minutes = $("#task-minutes");
+var $task_category = $("#task-category");
+var $task_goal = $("#task-goal");
 var $submitBtn = $("#submit");
 var $taskList = $("#task-list");
 
@@ -78,7 +78,7 @@ var handleFormSubmit = function (event) {
     event.preventDefault();
 
     var task = {
-        task_date: $task_date.val().trim(),
+        task_date: $task_date.val(),
         task_minutes: $task_minutes.val().trim(),
         task_category: $task_category.val().trim(),
         task_goal: $task_goal.val().trim()
