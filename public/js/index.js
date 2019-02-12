@@ -2,12 +2,12 @@
 // var $exampleText = $("#example-text");
 // var $exampleDescription = $("#example-description");
 
-var $task_date = $("task_date");
-var $task_minutes = $("task_minutes");
-var $task_category = $("task_category");
-var $task_goal = $("task_goal");
+var $task_date = $("task-date");
+var $task_minutes = $("task-minutes");
+var $task_category = $("task-category");
+var $task_goal = $("task-goal");
 var $submitBtn = $("#submit");
-// var $exampleList = $("#task-list");
+var $taskList = $("#task-list");
 
 // Create the date entry in 2019-2-8 format
 
@@ -15,8 +15,7 @@ var date = new Date();
 // first month has array index of 0, so add 1
 var today = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 // add the date to the form
-$("#task_date").text(today);
-
+$("#task-date").val(today);
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -26,7 +25,7 @@ var API = {
                 "Content-Type": "application/json"
             },
             type: "POST",
-            url: "api/task",
+            url: "api/tasks",
             data: JSON.stringify(task)
         });
     },
@@ -44,18 +43,18 @@ var API = {
     }
 };
 
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function () {
-    API.getExamples().then(function (data) {
-        var $examples = data.map(function (example) {
+// refreshTasks gets new examples from the db and repopulates the list
+var refreshTasks = function () {
+    API.getTasks().then(function (data) {
+        var $tasks = data.map(function (task) {
             var $a = $("<a>")
-                .text(example.text)
-                .attr("href", "/example/" + example.id);
+                .text(task.id)
+                .attr("href", "/task/" + task.id);
 
             var $li = $("<li>")
                 .attr({
                     class: "list-group-item",
-                    "data-id": example.id
+                    "data-id": task.id
                 })
                 .append($a);
 
@@ -68,13 +67,13 @@ var refreshExamples = function () {
             return $li;
         });
 
-        $exampleList.empty();
-        $exampleList.append($examples);
+        $taskList.empty();
+        $taskList.append($tasks);
     });
 };
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
+// handleFormSubmit is called whenever we submit a new task
+// Save the new task to the db and refresh the list
 var handleFormSubmit = function (event) {
     event.preventDefault();
 
@@ -85,15 +84,17 @@ var handleFormSubmit = function (event) {
         task_goal: $task_goal.val().trim()
     };
 
+
+
     if (!(task.task_minutes && task.task_goal)) {
         alert("You must enter an task text and description!");
         return;
     }
 
-    console.log(task.$task_date);
+    console.log(task.task_date);
 
     API.saveTask(task).then(function () {
-        refreshExamples();
+        refreshTasks();
     });
 
     // clear the form values
@@ -105,16 +106,16 @@ var handleFormSubmit = function (event) {
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
-// var handleDeleteBtnClick = function () {
-//     var idToDelete = $(this)
-//         .parent()
-//         .attr("data-id");
+var handleDeleteBtnClick = function () {
+    var idToDelete = $(this)
+        .parent()
+        .attr("data-id");
 
-//     API.deleteExample(idToDelete).then(function () {
-//         refreshExamples();
-//     });
-// };
+    API.deleteExample(idToDelete).then(function () {
+        refreshTasks();
+    });
+};
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
-// $exampleList.on("click", ".delete", handleDeleteBtnClick);
+$taskList.on("click", ".delete", handleDeleteBtnClick);
