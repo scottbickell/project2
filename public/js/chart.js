@@ -27,11 +27,11 @@ $(document).ready(function () {
                     labels: taskDateArr,
                     datasets: [{
                         label: "Task Minutes",
-                        backgroundColor: "rgba(42, 212, 158, 0.75)",
+                        backgroundColor: "rgba(35, 166, 213, 0.75)",
                         data: taskMinutesArr
                     }, {
                         label: "Task Goal",
-                        backgroundColor: "rgba(204, 102, 0, 0.75)",
+                        backgroundColor: "rgba(246, 106, 30, 0.75)",
                         data: taskGoalArr
                     }]
                 },
