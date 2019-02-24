@@ -43,6 +43,14 @@ var API = {
     }
 };
 
+// $(document).ready(function(){
+//     activeTab('aaa');
+// });
+
+function showChart(){
+    $("#view-chart").tab("show");
+};
+
 // refreshTasks gets new examples from the db and repopulates the list
 var refreshTasks = function () {
     API.getTasks().then(function (data) {
@@ -69,6 +77,8 @@ var refreshTasks = function () {
 
         $taskList.empty();
         $taskList.append($tasks);
+        showChart();
+
     });
 };
 
@@ -91,7 +101,7 @@ var handleFormSubmit = function (event) {
         return;
     }
 
-    console.log(task.task_date);
+    // console.log(task.task_date);
 
     API.saveTask(task).then(function () {
         refreshTasks();
