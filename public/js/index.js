@@ -43,9 +43,6 @@ var API = {
     }
 };
 
-// $(document).ready(function(){
-//     activeTab('aaa');
-// });
 
 function showChart(){
     $("#view-chart").tab("show");

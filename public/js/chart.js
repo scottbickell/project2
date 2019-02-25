@@ -38,7 +38,7 @@ $(document).ready(function () {
                 options: {
                     title: {
                         display: true,
-                        text: "Task Minutes vs. Task Goals by date"
+                        text: "Task Minutes and Task Goals by Date"
                     }
                 }
             });
