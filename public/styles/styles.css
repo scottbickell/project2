@@ -16,7 +16,7 @@ h1 {
     padding: .5em;
 }
 
-h1 a {
+h1 a, h1 a:hover, h1 a:active, h1 a:visited {
     color: #ffffff;
 }
 
